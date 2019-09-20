@@ -10,7 +10,7 @@
     <!-- reveal.js CSS -->
     <link rel="stylesheet" href="css/reveal.css">
     <!-- The id attribute must be defined for the reveal.js-menu themes panel -->
-    <link rel="stylesheet" href="css/theme/black.css" id="theme">
+    <link rel="stylesheet" href="css/theme/white.css" id="theme">
     <!-- Devicons CSS -->
     <link rel="stylesheet" href="css/devicons.min.css">
     <!-- Font Awesome CSS -->
@@ -44,7 +44,7 @@
           <h2>Outline</h2>
           <ul>
             <li><a href="#aims">Research aims</a></li>
-            <li><a href="#white-matter">The tractome</a></li>
+            <li><a href="#tractome">The tractome</a></li>
             <li><a href="#learning">Aim #1: Tractome ML</a></li>
             <li><a href="#big-data">Big data in neuroscience</a></li>
             <li><a href="#oss">Aim #2: Software</a></li>
@@ -53,6 +53,13 @@
           </ul>
         </section>
 
+        <section id="aims" data-external="sections/aims.html"></section>
+        <section id="tractome" data-external="sections/tractome.html"></section>
+        <section id="learning" data-external="sections/learning.html"></section>
+        <section id="big-data" data-external="sections/big-data.html"></section>
+        <section id="oss" data-external="sections/oss.html"></section>
+        <section id="discover" data-external="sections/discover.html"></section>
+        <section id="goals" data-external="sections/goals.html"></section>
         <section id="thanks" data-external="sections/thanks.html"></section>
       </div>
     </div>
@@ -63,8 +70,8 @@
       // - https://github.com/hakimel/reveal.js#configuration
       // - https://github.com/hakimel/reveal.js#dependencies
       Reveal.initialize({
-        width: 1920,
-        height: 1080,
+        // width: 1920,
+        // height: 1080,
         margin: 0.1,
         history: true,
         math: {
@@ -79,7 +86,8 @@
           { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
           // Zoom in and out with Alt+click
           { src: 'plugin/zoom-js/zoom.js', async: true },
-          { src: 'third_party_plugins/menu.js' },
+          // { src: 'third_party_plugins/menu.js' },
+          { src: 'node_modules/reveal.js-menu/menu.js' },
           { src: 'third_party_plugins/external.js', condition: function() { return !!document.querySelector( '[data-external]' ); } },
         ],
         menu: {
@@ -88,11 +96,11 @@
           numbers: false,
           titleSelector: 'notanelement',
           useTextContentForMissingTitles: false,
-          hideMIssingTitles: true,
+          hideMissingTitles: true,
           markers: true,
           custom: false,
           themes: true,
-          themesPath: 'css/theme',
+          themesPath: 'css/theme/',
           transitions: false,
           openButton: true,
           openSlideNumber: false,
