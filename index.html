@@ -63,6 +63,9 @@
       // - https://github.com/hakimel/reveal.js#configuration
       // - https://github.com/hakimel/reveal.js#dependencies
       Reveal.initialize({
+        width: 1920,
+        height: 1080,
+        margin: 0.1,
         history: true,
         math: {
           mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
@@ -80,10 +83,22 @@
           { src: 'third_party_plugins/external.js', condition: function() { return !!document.querySelector( '[data-external]' ); } },
         ],
         menu: {
+          side: 'left',
+          width: 'normal',
+          numbers: false,
+          titleSelector: 'notanelement',
+          useTextContentForMissingTitles: false,
+          hideMIssingTitles: true,
+          markers: true,
+          custom: false,
           themes: true,
-          transitions: true,
-          openButton: false,
-          loadIcons: false
+          themesPath: 'css/theme',
+          transitions: false,
+          openButton: true,
+          openSlideNumber: false,
+          keyboard: true,
+          sticky: false,
+          loadIcons: true
         }
       });
     </script>

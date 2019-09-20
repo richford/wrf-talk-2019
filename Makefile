@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-HOST ?= 127.0.0.1
+HTTPHOST ?= 127.0.0.1
 PORT ?= 8000
 
 python = /usr/bin/env python $(1)
@@ -42,12 +42,13 @@ link: ## Link all required resources
 	ln -fs node_modules/reveal.js/plugin .
 	ln -fs ../node_modules/reveal.js-menu/menu.css third_party_plugins/menu.css
 	ln -fs ../node_modules/reveal.js-menu/menu.js third_party_plugins/menu.js
+	ln -fs ../node_modules/reveal_external/external/external.js third_party_plugins/external.js
 
 .PHONY: serve
 serve: ## Serve the slides
-	@echo "Serving slides at http://$(HOST):$(PORT)/"
+	@echo "Serving slides at http://$(HTTPHOST):$(PORT)/"
 	@echo "Quit the server with CONTROL-C."
-	@$(call python,-m http.server --bind $(HOST) $(PORT))
+	@$(call python,-m http.server --bind $(HTTPHOST) $(PORT))
 
 .PHONY: demo
 demo: ## Open the reveal.js demo
