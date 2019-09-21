@@ -1,0 +1,599 @@
+<section data-menu-title="Backup">
+  <h2>Backup</h2>
+</section>
+<section data-menu-title="dMRI">
+  <h3>Diffusion MRI</h3>
+  <div class="row fragment">
+    <div class="col-13">
+      <p>Isotropic diffusion</p>
+      <div style="flex-grow: 1;">
+        <img src="./img/backup/diffusion-isotropic.gif" width="600" alt="Isotropic diffusion">
+      </div>
+    </div>
+    <div class="imgcite col-13">
+      <p>Anisotropic diffusion</p>
+      <div style="flex-grow: 1; display: flex; align-items: center; justify-content: center;">
+        <img src="./img/backup/diffusion-anisotropic.gif" width="600" alt="Anisotropic diffusion">
+      </div>
+      <cite>
+        <a href="http://jov.arvojournals.org/article.aspx?articleid=2603187">Rokem et al. (2017), Journal of Vision</a>
+        <br>
+        <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0123272">Rokem et al. (2015), PLoS One</a>
+      </cite>
+    </div>
+    <div class="imgcite col-13">
+      <p>DWI with varying b-vectors</p>
+      <img src="img/backup/dMRI-signal-movie.gif"
+           width="600"
+           alt="Diffusion MRI with varying B vectors">
+      <cite>
+        <a href="http://jov.arvojournals.org/article.aspx?articleid=2603187">Rokem et al. (2017), Journal of Vision</a>
+        <br>
+        <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0123272">Rokem et al. (2015), PLoS One</a>
+      </cite>
+    </div>
+  </div>
+  <aside class="notes" data-markdown>
+    - Water molecules in our body undergo random motion
+    - In physics, we call this "Brownian motion" or simply "diffusion"
+    - MR images can be made sensitive to this motion
+    - Left side: isotropic (bathtub)
+    - Right side: anisotropic (straw)
+    - Imagine the inverse problem:
+    - Don't know if you're looking at a bathtub or a straw
+    - By looking at several images with various directions and diffusion scales
+    - We can reconstruct white matter tracts
+    - Typical DWI resolution: 2mm. Axom diameter 1-30 microns. Celery stick analogy.
+  </aside>
+</section>
+<section>
+  <h3>Diffusion Metrics</h3>
+  <div class="imgcite">
+    <img src="img/backup/tensor-stats3.png" width="700" style="margin-top: 0; margin-bottom: 0;">
+    <div class="row" style="width: 700px; margin: auto;">
+      <div class="col-13">
+        <p class="smaller" style="margin-top: 0; margin-bottom: 0">Mean diffusivity</p>
+        <img src="img/backup/md-scale.png" height="60">
+        <script type="math/tex; mode=inline">
+          \frac{\mu m^2}{msec}
+        </script>
+      </div>
+      <div class="col-13">
+        <p class="smaller" style="margin-top: 0; margin-bottom: 0">Fractional anisotropy</p>
+        <img align="center"
+             src="img/backup/diffusion-fa.gif"
+             alt="Fractional Anisotropy"
+             width="175">
+      </div>
+      <div class="col-13">
+        <p class="smaller" style="margin-top: 0; margin-bottom: 0">Principal diffusion direction</p>
+        <img src="img/backup/pdd_axes.png" height="125" >
+      </div>
+    </div>
+    <cite>
+      <a href="http://jov.arvojournals.org/article.aspx?articleid=2603187">Rokem et al. (2017), Journal of Vision</a>
+      <br>
+      <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0123272">Rokem et al. (2015), PLoS One</a>
+    </cite>
+  </div>
+</section>
+
+<section>
+  <h3>From diffusion to tracts</h3>
+  <div class="row">
+    <div class="col-13">
+      <img align="center"
+           height="400"
+           src="./img/backup/axial_slice.png"
+           alt="Axial slice of human brain">
+    </div>
+    <div class="col-13">
+      <div class="fragment">
+        <img src="./img/backup/d2t-bkgrnd.png"
+             style="z-index: 1; margin-bottom: 0;"
+             align="center"
+             height="400"
+             alt="Closeup of axial slice">
+      </div>
+      <div class="fragment fade-in">
+        <img src="./img/backup/tensor_ellipsoids.png"
+             style="background:none; border:none; box-shadow:none; opacity:0.5; filter:alpha(opacity=50); z-index: 2; position: relative; top: -404; margin-top: 0; margin-bottom: 0"
+             align="center"
+             height="400"
+             alt="Tensor ellipsoids from tractography">
+      </div>
+      <div class="fragment fade-in">
+        <img src="./img/backup/tensor_ellipsoids_with_arrow.png"
+             style="background:none; border:none; box-shadow:none; opacity:0.6; filter:alpha(opacity=60); z-index: 3; position: relative; top: -804; margin-top: 0; margin-bottom: 0"
+             align="center"
+             height="400"
+             alt="Tensor ellipsoids from tractography with arrow">
+      </div>
+    </div>
+    <div class="col-13 fragment">
+      <img align="center" height="400" src="./img/backup/cc_tube_movie.gif" alt="Tractography of the corpus callosum">
+    </div>
+  </div>
+</section>
+<section data-menu-title="Preprocessing">
+  <img alt="dmriprep logo" src="./img/backup/dmriprep_icon.svg" height="400">
+  <h3>DMRIprep</h3>
+  <h4>Standardized, reproducible preprocessing</h4>
+</section>
+
+<section>
+  <h3>Challenge</h3>
+  <p>Complexity and lack of standardization of preprocessing can induce bias in interpretation of dMRI.</p>
+  <div class="row">
+    <div class="imgcite col-23">
+      <img src="./img/backup/pitfalls_orient_bvector.jpg" height="400" alt="Consequences of failing to reorient the b-vector in dMRI">
+      <cite>
+        Leemans and Jones (2009), Magnetic Resonance in Medicine
+      </cite>
+    </div>
+    <div class="imgcite col-13">
+      <img src="./img/backup/pitfalls_axis_flip.png" height="400" alt="Consequences of bvec axis flip in dMRI">
+      <cite>
+        Aganj (2018), Scientific Reports
+      </cite>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3>Solution</h3>
+  <div class="row">
+    <div class="two-col" style="font-size: 0.7em !important; margin: auto; text-align:left;">
+      <div class="fragment current-visible" data-fragment-index="1">
+        <p>Draw inspiration from FMRIprep:</p>
+        <ul class="noindent">
+          <li>Robust</li>
+          <li>Reproducible</li>
+          <li>Interrogable "glass box" architecture</li>
+          <li>Implemented as a nipype workflow</li>
+        </ul>
+      </div>
+      <div class="fragment" data-fragment-index="2">
+        <p>Extract, transform, load with three CLI programs</p>
+        <ol class="noindent">
+          <li>Download data:
+            <ul class="noindent">
+              <li><pre><code>dmriprep-data</code></pre></li>
+                <li>Supports BIDS data and the HBN study</li>
+            </ul>
+          </li>
+          <li>Run dmriprep:
+            <ul class="noindent">
+              <li><pre><code>dmriprep</code></pre></li>
+                <li>BIDS-App compliant</li>
+            </ul>
+          </li>
+          <li>Upload results:
+            <ul class="noindent">
+              <li><pre><code>dmriprep-upload</code></pre></li>
+                <li>to any AWS S3 bucket</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+    </div>
+    <div class="fragment two-col" data-fragment-index="2" style="margin: auto;">
+      <img src="./img/backup/dmriprep_workflow.jpg" height="450" alt="The dmriprep workflow">
+    </div>
+  </div>
+  <p class="fragment current-visible" data-fragment-index="3" style="font-size: 0.7em !important; text-align: left;">
+    Running dmriprep on 60 subjects from the HBN study cost 51 USD using Kubernetes on Google Cloud Platform.
+  </p>
+</section>
+
+<section>
+  <h3>Interactive web-based report</h3>
+  <div class="row">
+    <div class="col-12" style="margin: auto;">
+      <a href="http://nipy.org/dmriprep"><img src="./img/backup/dmriprep-viewer.png" height="300" alt="The dmriprep viewer website"></a>
+    </div>
+    <div class="col-12" style="margin: auto;">
+      <a href="http://nipy.org/dmriprep/#/bucket/preafq-hbn?report=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fpreafq-hbn%2Fsub-NDARAD615WLJ%2Fdmriprep%2Freport%2Fsub-NDARAD615WLJ_acq-64dir_dwi_report.json"><img src="./img/backup/qc_report.png" height="600" alt="The dmriprep QC report"></a>
+    </div>
+  </div>
+</section>
+
+<section data-menu-title="pyAFQ">
+  <h3>pyAFQ</h3>
+  <h4>Tractometry Workhorse</h4>
+  <h5><a href="https://github.com/yeatmanlab/pyAFQ">https://github.com/yeatmanlab/pyAFQ</a></h5>
+  <aside class="notes" data-markdown>
+    <textarea data-template>
+      * Put your speaker notes here.
+    </textarea>
+  </aside>
+</section>
+
+<section>
+  <h3>Tractometry</h3>
+  <div class="row">
+    <div class="col-23">
+      <div class="imgcite">
+        <img src="img/backup/afq_pipeline.png"
+             width="1800"
+             style="display: block; margin-left: auto; margin-right: auto;"
+             align="middle"
+             alt="AFQ Pipeline">
+        <cite>
+          <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0049790">Yeatman et al. PLoS ONE 7(11)</a>
+        </cite>
+      </div>
+      <p style="font-size: 0.7em !important; text-align: left;">
+        Automated Fiber Quantification (AFQ) identifies fiber tracts in a living
+        individual's brain. It creates tract profiles of diffusion metrics
+        along canonical white matter tracts.
+      </p>
+    </div>
+    <div class="col-13">
+      <img align="center"
+           src="img/backup/pyafq-segmentation-all-tracts-1.gif"
+           alt="AFQ segmentation"
+           width="250">
+      <img align="center"
+           src="img/backup/pyafq-segmentation-cst.gif"
+           alt="AFQ segmentation highlighting the corticospinal tract"
+           width="250">
+    </div>
+  </div>
+  <aside class="notes" data-markdown>
+    - (1) Whole brain tractography is initiated from each white matter voxel with fractional anisotropy (FA) > 0.3.
+    - (2) Fibers that pass through two waypoint regions of interest (ROIs) become candidates for the left IFOF fiber group.
+    - (3) Each candidate fiber is then scored based on its similarity to a standard fiber tract probability map. Fibers with high probability scores are retained.
+    - (4) Fibers tracts are represented as a 3-dimensional Gaussian distribution and outlier fibers that deviate substantially from the mean position of the tract are removed.
+    - (5) The fiber group is clipped to the central portion that spans between the two defining ROIs.
+    - (6) The fiber group core is calculated by resampling each fiber into 100 equidistant nodes and calculating the mean location of each node. Diffusion measurements are calculated at each node by taking a weighted average of the FA measurements of each individual fibers diffusion properties at that node. Weights are determined based on the Mahalanobis distance of each fiber node from the fiber core.
+  </aside>
+</section>
+
+<section>
+  <h3>Tractography</h3>
+  <div class="row">
+    <div class="col-13">
+      <img align="center"
+           height="400"
+           src="./img/backup/axial_slice.png"
+           alt="Axial slice of human brain">
+    </div>
+    <div class="col-13">
+      <div class="fragment">
+        <img src="./img/backup/d2t-bkgrnd.png"
+             style="z-index: 1; margin-bottom: 0;"
+             align="center"
+             height="400"
+             alt="Closeup of axial slice">
+      </div>
+      <div class="fragment fade-in">
+        <img src="./img/backup/tensor_ellipsoids.png"
+             style="background:none; border:none; box-shadow:none; opacity:0.5; filter:alpha(opacity=50); z-index: 2; position: relative; top: -404; margin-top: 0; margin-bottom: 0"
+             align="center"
+             height="400"
+             alt="Tensor ellipsoids from tractography">
+      </div>
+      <div class="fragment fade-in">
+        <img src="./img/backup/tensor_ellipsoids_with_arrow.png"
+             style="background:none; border:none; box-shadow:none; opacity:0.6; filter:alpha(opacity=60); z-index: 3; position: relative; top: -804; margin-top: 0; margin-bottom: 0"
+             align="center"
+             height="400"
+             alt="Tensor ellipsoids from tractography with arrow">
+      </div>
+    </div>
+    <div class="col-13 fragment">
+      <img align="center" height="400" src="./img/backup/cc_tube_movie.gif" alt="Tractography of the corpus callosum">
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3>Segmentation using Waypoint ROIs</h3>
+  <img align="center" width="1800" src="./img/backup/afq_pipeline_1_waypoint_roi.png" alt="Segmentation using waypoint ROIs">
+  <div style="text-align: left;">
+    <ul>
+      <li>Fibers are assigned to a fiber group if they pass through two waypoint ROIs that define the fascicle.</li>
+      <li>ROIs drawn on group-average DTI data in MNI space</li>
+    </ul>
+  </div>
+  <aside class="notes" data-markdown>
+    <textarea data-template>
+      * Put your speaker notes here.
+    </textarea>
+  </aside>
+</section>
+
+<section>
+  <h3>Resolve conflict using fiber probability maps</h3>
+  <img align="center" width="1800" src="./img/backup/afq_pipeline_2_prob_maps.png" alt="Fiber tract refinement using fiber probability maps">
+  <div style="text-align: left;">
+    <ul>
+      <li>Discard fibers that travel through low probability voxels.</li>
+      <li>Fiber tract probability maps created (by Hua et al.) by manually segmenting and coregistering each fiber group for 28 healthy adults.</li>
+    </ul>
+  </div>
+  <aside class="notes" data-markdown>
+    <textarea data-template>
+      * Put your speaker notes here.
+    </textarea>
+  </aside>
+</section>
+
+<section>
+  <h3>Remove outliers</h3>
+  <div class="row">
+    <div class="col-23" style="margin: auto; text-align: left;">
+      <p>Remove outlier tracts based on</p>
+      <ul>
+        <li>distance from centroid,</li>
+        <li>deviation from mean fiber length,</li>
+      </ul>
+      <p>using Mahalanobis distance (i.e. z-score for a multivariate Gaussian distribution)</p>
+    </div>
+    <div class="col-13">
+      <img align="center" height="550" src="./img/backup/afq_pipeline_3_outliers.png" alt="Removal of outliers">
+    </div>
+  </div>
+  <aside class="notes" data-markdown>
+    <textarea data-template>
+      * Put your speaker notes here.
+    </textarea>
+  </aside>
+</section>
+
+<section>
+  <h4>Define centroid and calculate tract profiles</h4>
+  <img align="center" width="750" src="./img/backup/afq_pipeline_4_centroid.png" alt="Defining the fiber tract centroid">
+  <img align="center" width="750" src="./img/backup/afq_pipeline_5_tract_profiles.png" alt="Calculate tract profiles">
+  <aside class="notes" data-markdown>
+    <textarea data-template>
+      * Put your speaker notes here.
+    </textarea>
+  </aside>
+</section>
+
+<section>
+  <h4>Tidy data</h4>
+  <div class="row">
+    <div class="col-12 imgcite" style="margin: auto;">
+      <p style="font-size: 0.7em !important;">pyAFQ segmentation<br>with 20 canonical bundles</p>
+      <img align="center"
+           src="img/backup/pyafq-segmentation-all-tracts-1.gif"
+           alt="AFQ segmentation"
+           width="250">
+    </div>
+    <div class="col-12" style="margin: auto;">
+      <p style="font-size: 0.7em !important;">pyAFQ segmentation<br>with highlighted CST</p>
+      <img align="center"
+           src="img/backup/pyafq-segmentation-cst.gif"
+           alt="AFQ segmentation highlighting the corticospinal tract"
+           width="250">
+    </div>
+  </div>
+  <div style="font-size: 0.7em !important; text-align: left;">
+    <p>pyAFQ represents massive, neuroanotomically-motivated feature engineering </p>
+    <p>pyAFQ yields:</p>
+    <ul>
+      <li>Segmentation of whole-brain tractography into fiber bundles</li>
+      <li>Organization of diffusion metrics into tidy table</li>
+      <li>One could open the results in pandas or excel.</li>
+    </ul>
+  </div>
+  <aside class="notes" data-markdown>
+    <textarea data-template>
+      * Put your speaker notes here.
+    </textarea>
+  </aside>
+</section>
+
+<section data-menu-title="Machine Learning">
+  <h3>AFQ-Insight</h3>
+  <h4>Machine learning of tractometry data</h4>
+</section>
+
+<section>
+  <h3>Group structure</h3>
+  <div style="text-align: left;">
+    <ul>
+      <li>dMRI data has has group structure,
+        <script type="math/tex; mode=inline">
+          \mathbf{X} \in \mathbb{R}^{n \times p}
+        </script>
+      </li>
+    </ul>
+  </div>
+  <img class="logo" style="padding: 10px;" height="500" align="middle"
+    src="img/backup/dmri-group-structure.svg"
+    alt="Group structure of dMRI data">
+  <aside class="notes" data-markdown>
+    - So that's why we used regression
+    - But, dMRI has group structure too
+    - We should use an algorithm that can capitalize on this information
+  </aside>
+</section>
+
+<section>
+  <h3>Regularization approaches</h3>
+  <div style="font-size: 0.6em !important;">
+    <p> Need regularization because
+    <script type="math/tex; mode=inline">p \gg n.</script>
+    </p>
+    <div class="row">
+      <div class="two-col">
+        <h6>The Lasso:</h6>
+        <div class="eqcite">
+          <script type="math/tex; mode=display">
+            \left\lVert \widehat{y} - \mathbf{X} \cdot \beta \right\lVert_2^2
+            + \lambda_2 \left\lVert \beta \right\lVert_1
+          </script>
+          <cite>
+            <a href="http://statweb.stanford.edu/~tibs/lasso/lasso.pdf">Tibshirani (1996), J. R. Statist. Soc. B</a>
+          </cite>
+        </div>
+        <br>
+        <ul>
+          <li>Global sparsity</li>
+          <li>Ignores group structure</li>
+        </ul>
+        <br>
+        <h6>The Group Lasso:</h6>
+        <div class="eqcite">
+          <script type="math/tex; mode=display">
+            \left\lVert \widehat{y} - \mathbf{X} \cdot \beta \right\lVert_2^2
+            + \lambda_1 \displaystyle \sum_\ell \sqrt{p_\ell}
+            \left\lVert \beta^{(\ell)} \right\lVert_2
+          </script>
+          <cite>
+            <a href="https://doi.org/10.1111/j.1467-9868.2005.00532.x">Yaun and Lin (2006), J. R. Statist. Soc. B</a>
+          </cite>
+        </div>
+        <br>
+        <ul>
+          <li>
+            <script type="math/tex; mode=inline">\ell</script>: number of groups, 
+            <script type="math/tex; mode=inline">p(\ell)</script>: group size
+          </li>
+          <li>Enforces inter-group sparsity</li>
+          <li>Lacks intra-group sparsity</li>
+        </ul>
+      </div>
+      <div class="two-col">
+        <h6>Sparse Group Lasso</h6>
+        <ul>
+          <li>Minimize
+            <div class="eqcite">
+              <script type="math/tex; mode=display">
+                \left\lVert \widehat{y} - \mathbf{X} \cdot \beta \right\lVert_2^2
+              + \lambda_1 \displaystyle \sum_\ell \sqrt{p_\ell}
+              \left\lVert \beta^{(\ell)} \right\lVert_2
+              + \lambda_2 \left\lVert \beta \right\lVert_1
+              </script>
+              <cite>
+                <a href="https://doi.org/10.1080/10618600.2012.681250">Simon et al. (2013), J. Computational and Graphical Statistics</a>
+              </cite>
+            </div>
+            <br>
+          </li>
+          <li>Subsumes Lasso
+            <script type="math/tex; mode=inline">(\lambda_1 = 0)</script>
+          </li>
+          <li>And Group Lasso
+            <script type="math/tex; mode=inline">(\lambda_2 = 0)</script>
+          </li>
+          <li>Enforces both intra-group and inter-group sparsity</li>
+          <li>The price is one additional hyperparameter.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <aside class="notes" data-markdown>
+    - But we have way too many features
+    - Need to regularize
+    - Naive regularization strategies don't cut it
+    - Lasso alone yields 70% accuracy and doesn't identify correct features
+    - Having identified the group structure...
+    - Noah (SGL - 2013)
+    - Intra-group and inter-group sparsity
+    - Feed in all groups
+    - Optimize one more hyperparameter
+  </aside>
+</section>
+
+<section>
+  <h3>Hyperparameter optimization</h3>
+  <p style="font-size: 0.7em !important; text-align: left;">
+  <script type="math/tex; mode=inline">
+    \alpha_1, \alpha_2
+  </script>
+  determined using nested K-fold cross-validation (CV).
+  </p>
+  <img class="logo"
+       style="margin: 0; padding: 10px;"
+       width="600"
+       align="middle"
+       src="img/backup/afq-insight-nested-cross-validation.svg"
+       alt="Hyperparameter optimization through nested cross-validation">
+  <p style="font-size: 0.7em !important; text-align: left;">
+  The inner CV loop selects the best hyperparameters. The outer CV
+  evaluates the model. 
+  </p>
+  <aside class="notes" data-markdown>
+    - Inner CV loop selects the right hyperparameters
+    - Outer CV loop evaluates the model
+    - Using repeated K-fold for each loop
+    - Stratified K-fold if classification problem
+  </aside>
+</section>
+
+<section>
+  <h3>Results: Classifying ALS patients</h3>
+  <p style="font-size: 0.7em !important; text-align: left;">
+    Using results from Sarica et al. (2017), Accuracy: 93&plusmn;2%, ROC-AUC: 0.978&plusmn;0.006
+  </p>
+  <div style="width: 2000; height:1000;">
+    <iframe id="shrink-iframe" width=2000px height=1000px
+            data-src="img/backup/classification_probs.html">
+    </iframe>
+  </div>
+</section>
+
+<section>
+  <h3>Class Confusion</h3>
+  <p>Some subjects confused the model in a majority of CV splits</p>
+  <div class="imgcite">
+    <a href="https://yeatmanlab.github.io/Sarica_2017/?table[prevSort][count]=2&table[prevSort][order]=ascending&table[prevSort][key]=&table[sort][count]=2&table[sort][order]=ascending&table[sort][key]=class&table[selectedRows][subject_005]=true&table[selectedRows][subject_016]=true&table[selectedRows][subject_019]=true&table[selectedRows][subject_030]=false&table[selectedRows][subject_032]=false&table[selectedRows][subject_035]=false&table[selectedRows][subject_036]=false&plots[checkboxes][right-corticospinal]=true&plots[zoom][rd][scale]=1&plots[zoom][rd][translate][0]=-3&plots[zoom][rd][translate][1]=-21&plots[zoom][fa][scale]=2.1140360811227614&plots[zoom][fa][translate][0]=-27.244995845837778&plots[zoom][fa][translate][1]=-106.10468474511174&plots[plotKey]=fa&plots[errorType]=stderr&plots[lineOpacity]=0.0">
+      <img src="img/backup/false_negatives.png" height="450" align="middle" alt="False negatives viewed in AFQ-Browser">
+    </a>
+    <cite>
+      Click to launch AFQ-Browser
+    </cite>
+  </div>
+  <aside class="notes" data-markdown>
+  </aside>
+</section>
+
+<section>
+  <h3>Classification Feature Importance</h3>
+  <ul style="font-size: 0.7em !important">
+    <li>SGL yields sparse feature space.</li>
+    <li>Corresponds to known white matter correlates of ALS.</li>
+    <li>Primarily selects fractional anisotropy metric in the right corticospinal tract.</li>
+  </ul>
+  <img src="img/backup/classification_beta_bupu.png" height="450" align="middle" alt="Classification regression weights">
+  <aside class="notes" data-markdown>
+  </aside>
+</section>
+
+<section>
+  <h3>Regression: predicting brain age</h3>
+  <p style="font-size: 0.7em !important; text-align: left;">
+    Using 77 subjects aged 6-50 from Yeatman et al. (2014)
+  </p>
+  <img src="img/backup/regression_residuals.png" height="450" align="middle" alt="Classification regression weights">
+  <p style="font-size: 0.7em !important; text-align: left;">
+    Median absolute error: 3.6 years, R<sup>2</sup>~0.3
+  </p>
+</section>
+
+<section>
+  <h3>Regression Feature Importance</h3>
+  <p style="font-size: 0.7em !important; text-align: left;">
+    In constract to the ALS case, the feature space is dense and non-localized.
+  </p>
+  <div class="row">
+    <div class="col-13">
+      <img src="img/backup/regression_beta_annotated.png" height="475" align="middle" alt="Age regression weights">
+    </div>
+    <div class="col-23 imgcite">
+      <a href="https://yeatmanlab.github.io/AFQBrowser-demo/?table[prevSort][count]=2&table[prevSort][order]=ascending&table[prevSort][key]=&table[sort][count]=5&table[sort][order]=ascending&table[sort][key]=Age&table[splitMethod]=equal-interval&plots[zoom][rd][scale]=1&plots[zoom][rd][translate][0]=0&plots[zoom][rd][translate][1]=0&plots[zoom][fa][scale]=1&plots[zoom][fa][translate][0]=0&plots[zoom][fa][translate][1]=0&plots[plotKey]=fa&plots[errorType]=stderr&plots[lineOpacity]=0&plots[brushTract]=true&plots[checkboxes][left-cingulum-cingulate]=true&plots[checkboxes][callosum-forceps-minor]=true&three[cameraPosition][x]=-0.04825662627358317&three[cameraPosition][y]=-2.117195063519432&three[cameraPosition][z]=13.370828792974232&three[rHOpacity]=0.23">
+        <img src="img/backup/regression_tract_profiles.png" height="475" align="middle" alt="Age regression tract profiles">
+      </a>
+      <cite>
+        Click for interactive version
+      </cite>
+    </div>
+  </div>
+  <aside class="notes" data-markdown>
+  </aside>
+</section>

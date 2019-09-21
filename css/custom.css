@@ -98,3 +98,37 @@ i {
 .reveal .smaller{
   font-size: 0.5em !important;
 }
+
+ul.noindent {
+  margin-left: 5px;
+  margin-right: 0px;
+  padding-left: 10px;
+  padding-right: 0px;
+}
+
+ol.noindent {
+  margin-left: 5px;
+  margin-right: 0px;
+  padding-left: 10px;
+  padding-right: 0px;
+}
+
+.reveal .eqcite cite{
+  display: block;
+  font-size: 0.5em !important;
+  text-align: right;
+  line-height: 1.25em;
+}
+
+#shrink-iframe {
+  -moz-transform: scale(0.5, 0.5); 
+  -webkit-transform: scale(0.5, 0.5); 
+  -o-transform: scale(0.5, 0.5);
+  -ms-transform: scale(0.5, 0.5);
+  transform: scale(0.5, 0.5); 
+  -moz-transform-origin: top left;
+  -webkit-transform-origin: top left;
+  -o-transform-origin: top left;
+  -ms-transform-origin: top left;
+  transform-origin: top left;
+}
